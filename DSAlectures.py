@@ -44,7 +44,7 @@ print('Answer', answer)
 list_one = [1, 2, 32, 45, 55, 66, 88, 2, 3, 8, 9, 4, 5, 6, 4, 1, 22]
 query_one = 1
 answer_one = locate_card(list_one, query_one)
-print('answer one result is ', answer_one)"""
+print('answer one result is ', answer_one')"""
 
 
 # now we have to make this solution optimal cause it constrains that we have to pick the wanted card in the least
@@ -67,16 +67,46 @@ def binary_search(lo, hi, condition):
     return -1  # if the condition is not found and while loop ends then we return -1 (empty array, not found)
 
 
-def locate_card(cards, query):
+'''def locate_card(cards, query):
     def condition(mid):  # we are creating nested functions here
         if cards[mid] == query:  #  this shows if the query is founded in mid check
-            if mid > 0 and cards[mid - 1] == query:  # check is mid greater than 0 or is there any same number found in right side of the array
+            if mid > 0 and cards[mid - 1] == query:  # check is mid greater than 0 or is there any same number found in 
+            #right side of the array
                 return 'left'  # if yes check in left side in the array
             else: # if not found then the mid is our answer so return the mid, means found
                 return 'found'
         elif cards[mid] < query:
             return 'left'
         else:
+            return 'right'''
+# leetCode problem 34 solution find the first and last position of the given number from the given array
+
+
+def first_position(nums, target):
+    def condition(mid):
+        if nums[mid] == target:
+            if mid > 0 and nums[mid-1] == target:
+                return 'left'
+            return 'found'
+        elif nums[mid] < target:
             return 'right'
+        else:
+            return 'left'
+    return binary_search(0, len(nums-1), condition)
 
 
+def last_position(nums, target):
+    def condition(mid):
+        if nums[mid] == target:
+            if mid < len(nums) - 1 and nums[mid + 1] == target:
+                return 'right'
+            return 'found'
+        elif nums[mid] < target:
+            return 'right'
+        else:
+            return 'left'
+    return binary_search(0, len(nums)-1, condition)
+
+
+def first_and_last_position(nums, target):
+    return first_position(nums, target), last_position(nums, target)
