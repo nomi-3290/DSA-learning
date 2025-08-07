@@ -84,3 +84,41 @@ def searching_insert(nums, target):
     index of the given target. How so the Binary Search counts the index and divide it with and return the integer value
     and compare with mid if it's small go towards right and compare it's big the answer is MIDPOINT.
 """
+
+
+# LeetCode problem number 67 {Add Binary}   Date: 07-08-2025
+
+
+"""
+   Difficulty level: Easy 
+   Abstract: We're given two binary strings. We need to perform binary addition manually (without built-in conversions) 
+   and return the result as a binary string.  
+"""
+
+
+def add_binary(a: str, b: str):
+    i, j = len(a) - 1, len(b) - 1
+    carry = 0
+    result = []
+
+    while i >= 0 or j >= 0 or carry:
+        digit_a = int(a[i]) if i >= 0 else 0
+        digit_b = int(b[j]) if j >= 0 else 0
+
+        total = digit_a + digit_b + carry
+        result.append(str(total % 2))
+        carry = total // 2
+
+        i -= 1
+        j -= 1
+
+    return ''.join(reversed(result))
+
+
+"""
+ So we make a function add_binary which takes two binary strings a and b. We start from the last index and set carry = 0
+ We use a list called result because it's faster for appending. In the while loop, we keep checking until both strings 
+ are finished and there's no carry. At each step, we add the bits + carry, store total % 2 in result, 
+ update carry = total // 2, and move left by i -= 1, j -= 1. In the end, we reverse the result to get the 
+ final binary string.
+"""
