@@ -90,9 +90,9 @@ def searching_insert(nums, target):
 
 
 """
-   Difficulty level: Easy 
-   Abstract: We're given two binary strings. We need to perform binary addition manually (without built-in conversions) 
-   and return the result as a binary string.  
+ Difficulty level: Easy 
+ Abstract: We're given two binary strings. We need to perform binary addition manually (without built-in conversions) 
+ and return the result as a binary string.  
 """
 
 
@@ -122,3 +122,28 @@ def add_binary(a: str, b: str):
  update carry = total // 2, and move left by i -= 1, j -= 1. In the end, we reverse the result to get the 
  final binary string.
 """
+
+# LeetCode 700 - Search in a Binary Search Tree {Date: 08-08-2025} Difficulty level: easy
+
+
+def bst(node, condition):
+    while node:
+        result = condition(node)
+        if result == 'found':
+            return node
+        elif result == 'left':
+            node = node.left
+        else:
+            node = node.right
+    return None
+
+
+def search_bst(root, val):
+    def condition(node):
+        if node.val == val:
+            return 'found'
+        elif node.val > val:
+            return 'left'
+        else:
+            return 'right'
+    return bst(root, condition)
