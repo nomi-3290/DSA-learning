@@ -147,3 +147,19 @@ def search_bst(root, val):
         else:
             return 'right'
     return bst(root, condition)
+
+
+# LeetCode 869 Recorded power of two        Date: 10-08-2025
+
+
+def reordered_powerOf2(n: int) -> bool:
+    def count_digits(x):
+        return tuple(sorted(str(x)))
+
+    power_signatures = {count_digits(1 << i) for i in range(31)}
+    return count_digits(n) in power_signatures
+
+
+# Example usage
+print(reordered_powerOf2(1))  # True
+print(reordered_powerOf2(10))  # False
